@@ -1,0 +1,4 @@
+Compile commande :
+gcc graph.c -g -I /usr/include -lglut -lGL -lpthread -o out
+Execution command :
+./out
