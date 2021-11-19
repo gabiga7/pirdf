@@ -5,4 +5,4 @@ gcc graph.c -g -I /usr/include -lglut -lGL -lpthread -o out
 Execution command :
 ./out
 
-Screen may takes up to 10 seconds to appear
+Radar window may takes up to 10 seconds to appear
