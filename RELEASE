@@ -16,6 +16,11 @@ Program core :
  -Latency reduced
  -Scan every 500ms
 
+Logs :
+ -Log system added
+
+Configuration file :
+ -Automatic configuration script added
 
 Minor :
 

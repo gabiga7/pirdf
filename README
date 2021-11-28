@@ -1,8 +1,16 @@
 #Created by gabiga7
 
-Compile commande :
-gcc graph.c -g -I /usr/include -lglut -lGL -lpthread -o out
-Execution command :
-./out
 
-Radar window may takes up to 10 seconds to appear
+
+Automatic configuration and compilation command :
+./configure
+(Recommended)
+
+Manual compilation command :
+gcc graph.c -g -I /usr/include -lglut -lm -lGL -lpthread -o rdf
+
+
+Execution command :
+./rdf
+
+Radar window may takes up to 10 seconds to appear depending your device

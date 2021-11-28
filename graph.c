@@ -7,7 +7,7 @@
 #include <GL/glut.h>
 #include <time.h>
 
-//#include "validnext2.c"
+//#include "read.c"
 
 // library installation : sudo apt-get install freeglut3
 //                        sudo apt-get install freeglut3-dev
