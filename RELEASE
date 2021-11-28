@@ -1,0 +1,23 @@
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+28/11/2021
+
+
+Major :
+
+Graphical User Iterface upgraded :
+ -Add of circles and moving wave to increase lisibility
+ -Add of time
+ -Add of channel
+ -Add of vector to object
+
+Program core :
+ -Latency reduced
+ -Scan every 500ms
+
+
+Minor :
+
+ -Bugs fixed
+ -Threads optimization
