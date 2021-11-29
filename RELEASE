@@ -1,10 +1,10 @@
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Last update : 28/11/2021
+Last update : 29/11/2021
 
 
-Major :
+MAJOR :
 
 Graphical User Iterface upgraded :
  -Add of circles and moving wave to increase lisibility
@@ -22,7 +22,11 @@ Logs :
 Configuration file :
  -Automatic configuration script added
 
-Minor :
+Trunk :
+ -Trunk optimized
+
+
+MINOR :
 
  -Bugs fixed
  -Threads optimization

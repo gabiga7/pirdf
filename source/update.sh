@@ -1,6 +1,6 @@
 #!/usr/bin/sh
 
 git pull
-./configure.sh
+./source/configure.sh
 cat RELEASE
 

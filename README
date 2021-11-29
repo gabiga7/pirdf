@@ -1,18 +1,47 @@
 #Created by gabiga7
 
+HOW TO USE :
+First time or update:
+    ./launcher
+        ->update
+    ./launcher
+        ->install
+    ./launcher
+        ->configure
+    ./launcher
+        ->launch
 
-Automatic installation :
-./install.sh
+Classic use :
+    ./launcher
+        ->launch
+
+If there is a bug :
+    ./launcher
+        ->createlogs
+    send .tar file to gabelga91@gmail.com with comments
+    
+
+
+
+
+
+Manual installation :
+./source/install.sh
 
 Automatic configuration and compilation command :
-./configure.sh
-(Recommended)
+./source/configure.sh
 
 Manual compilation command :
 gcc source/main.c -g -I /usr/include -lglut -lm -lGL -lpthread -o rdf
 
 
-Execution command :
+Manual execution command :
 ./rdf
 
+
 Radar window may takes up to 10 seconds to appear depending your device
+
+
+Known issues :
+-Memory leak
+-Segfault when no rtl-sdr connected
