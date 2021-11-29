@@ -1,13 +1,15 @@
 #Created by gabiga7
 
 
+Automatic installation :
+./install.sh
 
 Automatic configuration and compilation command :
-./configure
+./configure.sh
 (Recommended)
 
 Manual compilation command :
-gcc graph.c -g -I /usr/include -lglut -lm -lGL -lpthread -o rdf
+gcc source/main.c -g -I /usr/include -lglut -lm -lGL -lpthread -o rdf
 
 
 Execution command :
