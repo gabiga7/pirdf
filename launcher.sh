@@ -2,9 +2,8 @@
 
 cd ~/Documents/perso/h/compinion/radio/pirdf
 
-var=$(echo $(zenity --entry --title="PIRDF" \
---text="Veuillez indiquer l'action a effectuer" \
-launch configure install update createlogs clean))
+var=$(zenity --width=50 --height=300 --list "launch" "configure" "install" "update" "createlogs" "clean" --column="command" --text="Select action" --title="RDF")
+
 
 if [ $var = "launch" ]; then
     ./source/launch.sh
