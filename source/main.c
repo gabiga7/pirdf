@@ -6,6 +6,7 @@
 #include <GL/glu.h>
 #include <GL/glut.h>
 #include <time.h>
+#include <pthread.h>
 
 //#include "read.c"
 
@@ -56,7 +57,7 @@ void updateRead()
     //	x=received.resultatO-received.resultatE;
     //	y=received.resultatS-received.resultatN;
     x=0.5;
-    y=0.5;
+    x=0.5;
     channel=7;
     if (x<=-0.75)
         x=-0.75;
@@ -82,6 +83,12 @@ void updateTime()
     glutTimerFunc(1000,updateTime,0);
 }
 
+void *play_sound()
+{
+    system("paplay source/sonar.wav");
+    pthread_exit(NULL);
+}
+
 void updateWave()
 {
     //	struct to_give received;
@@ -96,9 +103,15 @@ void updateWave()
 
     //float val=sqrtf(x*x+y*y);
     //printf("%f\n",val);
-    if (sqrtf(x*x+y*y)-0.05<=r && r<= sqrtf(x*x+y*y)+0.05)
+    if ((sqrtf(x*x+y*y)-0.05<=r && r<= sqrtf(x*x+y*y)+0.05) && (x!=0 && y!=0))
     {
         collision=1;
+        if (sqrtf(x*x+y*y)-0.005<=r && r<= sqrtf(x*x+y*y)+0.005)
+        {
+            pthread_t thread_sound;
+            pthread_create (&thread_sound,NULL,&play_sound,NULL);
+            pthread_detach (thread_sound);
+        }
     }
     else
         collision=0;
@@ -162,7 +175,7 @@ void drawGraph()
     glEnd();
     //detection end
 
-//channel
+    //channel
     glColor3f(0,1,0);
     char *chan=malloc(sizeof(char)*20);
     char *channum=malloc(sizeof(char)*5);
@@ -188,7 +201,7 @@ void drawGraph()
         glutBitmapCharacter(GLUT_BITMAP_TIMES_ROMAN_24, ctime(&t)[i]);
     }
     //time end
-    
+
     glColor3f(0,0,1);
     glFlush();
 }

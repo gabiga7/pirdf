@@ -1,5 +1,6 @@
 #!/usr/bin/sh
 
+cd ~/Documents/perso/h/compinion/radio/pirdf
 
 var=$(echo $(zenity --entry --title="PIRDF" \
 --text="Veuillez indiquer l'action a effectuer" \
