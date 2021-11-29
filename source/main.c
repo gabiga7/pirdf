@@ -57,7 +57,7 @@ void updateRead()
     //	x=received.resultatO-received.resultatE;
     //	y=received.resultatS-received.resultatN;
     x=0.5;
-    x=0.5;
+    y=0.5;
     channel=7;
     if (x<=-0.75)
         x=-0.75;
@@ -103,7 +103,7 @@ void updateWave()
 
     //float val=sqrtf(x*x+y*y);
     //printf("%f\n",val);
-    if ((sqrtf(x*x+y*y)-0.05<=r && r<= sqrtf(x*x+y*y)+0.05) && (x!=0 && y!=0))
+    if ((sqrtf(x*x+y*y)-0.05<=r && r<= sqrtf(x*x+y*y)+0.05) && (x!=0 || y!=0))
     {
         collision=1;
         if (sqrtf(x*x+y*y)-0.005<=r && r<= sqrtf(x*x+y*y)+0.005)
