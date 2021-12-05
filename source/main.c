@@ -8,7 +8,8 @@
 #include <time.h>
 #include <pthread.h>
 
-//#include "read.c"
+struct to_give received; //data received from read
+#include "read.c"
 
 // library installation : sudo apt-get install freeglut3
 //                        sudo apt-get install freeglut3-dev
@@ -26,6 +27,7 @@ int collision = 0; //if wave deetects somthing
 int channel=7; //channel scanned
 
 time_t t; //time displayed
+
 
 void initGraph()
 {
@@ -52,12 +54,13 @@ void drawCircle(float cx, float cy, float r, int num_segments) {
 
 void updateRead()
 {
-    //	struct to_give received;
-    //	received=read();
-    //	x=received.resultatO-received.resultatE;
-    //	y=received.resultatS-received.resultatN;
-    x=0.5;
-    y=0.5;
+	pthread_t th;
+	pthread_create(&th,NULL,&read,NULL);
+            pthread_detach (th);
+    	x=received.resultatO-received.resultatE;
+    	y=received.resultatS-received.resultatN;
+    //x=0.5;
+    //y=0.5;
     channel=7;
     if (x<=-0.75)
         x=-0.75;

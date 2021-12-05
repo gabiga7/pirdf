@@ -186,7 +186,7 @@ static void *read_db(void* arguments)
 }
 
 
-struct to_give read(void)
+void *read(void* arguments)
 {
     //int ret;
     pthread_t thread_read0;
@@ -233,13 +233,11 @@ struct to_give read(void)
     printf("\n\n\n%lf\n\n\n\n",argsE.resultat);
 
 
-    struct to_give final_result;
-    final_result.resultatN=argsN.resultat;
-    final_result.resultatS=argsS.resultat;
-    final_result.resultatO=argsO.resultat;
-    final_result.resultatE=argsE.resultat;
+    received.resultatN=argsN.resultat;
+    received.resultatS=argsS.resultat;
+    received.resultatO=argsO.resultat;
+    received.resultatE=argsE.resultat;
 
-    return final_result;
 }
 
 /*
