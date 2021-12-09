@@ -192,6 +192,8 @@ void drawGraph()
     {
         glutBitmapCharacter(GLUT_BITMAP_TIMES_ROMAN_24,chan[i]);
     }
+    free(chan);
+    free(channum);
     //channel end
 
     //time

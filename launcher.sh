@@ -1,7 +1,5 @@
 #!/usr/bin/sh
 
-cd ~/Documents/perso/h/compinion/radio/pirdf
-
 var=$(zenity --width=50 --height=300 --list "launch" "configure" "install" "update" "createlogs" "clean" --column="command" --text="Select action" --title="RDF")
 
 
@@ -26,6 +24,8 @@ if [ $var = "createlogs" ]; then
 fi
 
 if [ $var = "clean" ]; then
-    rm rdf
-    rm logs -r
+    rm rdf -f
+    rm logs -r -f
+    rm result* -f
+    rm envoyer* -f
 fi
