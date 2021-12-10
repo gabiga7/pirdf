@@ -9,11 +9,13 @@ Graphical User Iterface :
  - plus and minus buttons added to change channel
  - Auto mode added to scan all 16 channels
  - Arrow added
+ - Pop-up added in menu
 
 
 Minor :
 
  -File optimization
+ -Menu options enhanced
  -Segfault frequency reduced
 
 

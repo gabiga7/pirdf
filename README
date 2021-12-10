@@ -1,21 +1,21 @@
 #Created by gabiga7
 
 HOW TO USE :
-First time or update:
-    ./launcher
-        ->update
-    ./launcher
+First time installation:
+    launcher
         ->install
     ./launcher
-        ->configure
+        ->launch
+
+Update:
+    launcher
+        ->update
+
+Launch :
     ./launcher
         ->launch
 
-Classic use :
-    ./launcher
-        ->launch
-
-If there is a bug :
+Report a bug :
     ./launcher
         ->createlogs
     send .tar file to gabelga91@gmail.com with comments
@@ -44,4 +44,4 @@ Radar window may takes up to 10 seconds to appear depending your device
 
 Known issues :
 -Memory leak
--Segfault when no rtl-sdr connected
+-Segfault some times
