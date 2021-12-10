@@ -4,19 +4,17 @@ HOW TO USE :
 First time installation:
     launcher
         ->install
-    ./launcher
-        ->launch
 
 Update:
     launcher
         ->update
 
-Launch :
-    ./launcher
-        ->launch
+Start :
+    launcher
+        ->start
 
 Report a bug :
-    ./launcher
+    launcher
         ->createlogs
     send .tar file to gabelga91@gmail.com with comments
     
@@ -44,4 +42,4 @@ Radar window may takes up to 10 seconds to appear depending your device
 
 Known issues :
 -Memory leak
--Segfault some times
+-Segfault sometimes

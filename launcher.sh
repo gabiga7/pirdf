@@ -1,10 +1,13 @@
 #!/usr/bin/sh
 
-var=$(zenity --width=50 --height=300 --list "launch"  "install" "update" "auto-config" "createlogs" "clean" --column="command" --text="Select action" --title="RDF")
+var=$(zenity --width=50 --height=320 --list "start-RDF" "start-camera"  "install" "update" "auto-config" "createlogs" "clean" --column="command" --text="Select action" --title="RDF")
 
 
-if [ $var = "launch" ]; then
+if [ $var = "start-RDF" ]; then
     ./source/launch.sh
+fi
+if [ $var = "start-camera" ]; then
+    cheese -f
 fi
 
 if [ $var = "update" ]; then
@@ -21,7 +24,7 @@ if [ $var = "install" ]; then
     ./source/install.sh
     ./source/update.sh
     ./source/configure.sh
-    notify-send "Installation done, use launch to start the program"
+    notify-send "Installation done, use start to launch the program"
 fi
 
 if [ $var = "createlogs" ]; then
@@ -36,3 +39,5 @@ if [ $var = "clean" ]; then
     rm envoyer* -f
     notify-send "Repository cleaned"
 fi
+
+
