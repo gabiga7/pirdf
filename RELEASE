@@ -1,20 +1,19 @@
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-	Last update : 09/12/2021
+	Last update : 10/12/2021
 
 
 MAJOR :
 
-Bug:
- -Segfault fixed
-
-Trunk :
- -Trunk optimized
+Graphical User Iterface :
+ - plus and minus buttons added to change channel
+ - Arrow added
 
 
 Minor :
 
  -File optimization
+ -Segfault frequency reduced
 
 
 

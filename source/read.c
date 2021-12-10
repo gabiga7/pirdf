@@ -57,7 +57,7 @@ long countrows(char *filename)
 static void *read_db(void* arguments)
 {
     struct arg_struct *args=(struct arg_struct *)arguments;
-    double channel=args->channel;
+    //double channel=args->channel;
     double id=args->id;
     double max=-100;
 

@@ -9,6 +9,8 @@
 #include <pthread.h>
 
 struct to_give received; //data received from read
+int channel=7; //channel scanned
+
 #include "read.c"
 
 // library installation : sudo apt-get install freeglut3
@@ -24,7 +26,9 @@ float r=0; //rayon of the wave
 
 int collision = 0; //if wave deetects somthing
 
-int channel=7; //channel scanned
+
+float my=0; //mouse position
+float mx=0;; //mouse position
 
 time_t t; //time displayed
 
@@ -41,6 +45,7 @@ void initPoint()
     glColor3f(0,1,0);
 }
 
+
 void drawCircle(float cx, float cy, float r, int num_segments) {
     glBegin(GL_LINE_LOOP);
     for (int ii = 0; ii < num_segments; ii++)   {
@@ -54,14 +59,14 @@ void drawCircle(float cx, float cy, float r, int num_segments) {
 
 void updateRead()
 {
-	pthread_t th;
-	pthread_create(&th,NULL,&read,NULL);
-            pthread_detach (th);
-    	x=received.resultatO-received.resultatE;
-    	y=received.resultatS-received.resultatN;
+    pthread_t th;
+    pthread_create(&th,NULL,&read,NULL);
+    pthread_detach (th);
+    x=received.resultatO-received.resultatE;
+    y=received.resultatS-received.resultatN;
     //x=0.5;
     //y=0.5;
-    channel=7;
+    //channel=7;
     if (x<=-0.75)
         x=-0.75;
     if (x>=0.75)
@@ -122,6 +127,28 @@ void updateWave()
     glutTimerFunc(10,updateWave,0);
 }
 
+void mouse(int button, int state, int mousex, int mousey)
+{
+    if(button==GLUT_LEFT_BUTTON && state==GLUT_DOWN)
+    {
+        mx = mousex;
+        my = mousey;
+        printf("%f %f\n",mx,my);
+        glutPostRedisplay();
+    }
+    if (mx>0 && mx <75 && my > 125 && my <175 && channel <16)
+    {
+        channel++;
+    }
+    if (mx>0 && mx <75 && my > 50 && my <100 && channel >0)
+    {
+        channel--;
+    }
+    mx = 0;
+    my = 0;
+    printf("%f %f\n",mx,my);
+}
+
 void drawGraph()
 {
     //printf("%f\n",f);
@@ -138,6 +165,43 @@ void drawGraph()
     glVertex2f(0,0.75);
     glEnd();
     //graph end
+
+
+    //plus&minus
+    glLineWidth(30);
+
+    glBegin(GL_LINES);
+    glVertex2f(-0.98,0.85);
+    glVertex2f(-0.90,0.85);
+
+
+    glVertex2f(-0.98,0.70);
+    glVertex2f(-0.90,0.70);
+    glVertex2f(-0.94,0.65);
+    glVertex2f(-0.94,0.75);
+
+    glEnd();
+    //plus&minus end
+
+
+    //arrow
+    glColor3f(0,1,0);
+    glLineWidth(10);
+
+    glBegin(GL_LINES);
+    glVertex2f(0.90,0.80);
+    glVertex2f(0.90,0.95);
+
+    glVertex2f(0.90,0.95);
+    glVertex2f(0.85,0.90);
+
+    glVertex2f(0.90,0.95);
+    glVertex2f(0.95,0.90);
+
+    glEnd();
+    glColor3f(0,0,1);
+    //arrow end
+
 
     //circle
     glLineWidth(1);
@@ -182,7 +246,7 @@ void drawGraph()
     glColor3f(0,1,0);
     char *chan=malloc(sizeof(char)*20);
     char *channum=malloc(sizeof(char)*5);
-    strcpy(chan,"CHANNEL : ");
+    strcpy(chan,"PMR446 - CHANNEL : ");
     sprintf(channum,"%d",channel);
     strcat(chan,channum);
     int c = glutBitmapLength(GLUT_BITMAP_TIMES_ROMAN_24, chan);
@@ -205,6 +269,7 @@ void drawGraph()
     {
         glutBitmapCharacter(GLUT_BITMAP_TIMES_ROMAN_24, ctime(&t)[i]);
     }
+    //printf("%f %f\n",mx,my);
     //time end
 
     glColor3f(0,0,1);
@@ -241,6 +306,7 @@ int main (int argc, char *argv[])
     updateWave();
     updateRead();
     updateTime();
+    glutMouseFunc(mouse);
     glutMainLoop();
     return 0;
 }
