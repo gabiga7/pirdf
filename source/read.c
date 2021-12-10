@@ -63,6 +63,12 @@ static void *read_db(void* arguments)
 
     double range_inf=446006250.0+((channel-1)*12500.0)-300.0;
     double range_sup=446006250.0+((channel-1)*12500.0)+300.0;
+    if (isautomode==1)
+    {
+        printf("AUTO MODE ENABLED\n");
+        range_inf=446006250.0+((1-1)*12500.0)-300.0;
+        range_sup=446006250.0+((16-1)*12500.0)+300.0;
+    }
 
     char *filename=malloc(sizeof(char)*50);
     strcpy(filename,"results");
@@ -116,7 +122,7 @@ static void *read_db(void* arguments)
             printf("================    antenna %lf not connected    =====\n",id);
             fclose(f);
             remove(filename);
-            
+
             free(filename);
             //free(f);
             args->resultat=0;
@@ -241,16 +247,16 @@ void *read(void* arguments)
 }
 
 /*
-int main(void)
-{
-    read();
-    read();
-    read();
-    read();
-    read();
-    read();
-    read();
-    read();
-    return 0;
-}
-*/
+   int main(void)
+   {
+   read();
+   read();
+   read();
+   read();
+   read();
+   read();
+   read();
+   read();
+   return 0;
+   }
+   */

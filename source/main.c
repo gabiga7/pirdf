@@ -10,6 +10,7 @@
 
 struct to_give received; //data received from read
 int channel=7; //channel scanned
+int isautomode=0; //auto mode
 
 #include "read.c"
 
@@ -139,14 +140,42 @@ void mouse(int button, int state, int mousex, int mousey)
     if (mx>0 && mx <75 && my > 125 && my <175 && channel <16)
     {
         channel++;
+        printf("increase channel\n");
     }
-    if (mx>0 && mx <75 && my > 50 && my <100 && channel >0)
+    if (mx>0 && mx <75 && my > 50 && my <100 && channel >1)
     {
         channel--;
+        printf("decrease channel\n");
+    }
+    if (mx>0 && mx <75 && my > 200 && my <275 && isautomode==0)
+    {
+        isautomode=1;
+        printf("auto on\n");
+    }
+    else if (mx>0 && mx <75 && my > 200 && my <275 && isautomode==1)
+    {
+        isautomode=0;
+        printf("auto off\n");
     }
     mx = 0;
     my = 0;
     printf("%f %f\n",mx,my);
+}
+
+void autoMode()
+{
+    //printf("isautomode=%d\n",isautomode);
+    if (isautomode==1)
+        glColor3f(0,1,0);
+    else
+        glColor3f(1,0,0);
+    glLineWidth(3);
+    drawCircle(-0.94,0.55,0.05,150);
+    drawCircle(-0.94,0.55,0.025,150);
+    drawCircle(-0.94,0.55,0.005,150);
+    glEnd();
+
+
 }
 
 void drawGraph()
@@ -168,6 +197,10 @@ void drawGraph()
 
 
     //plus&minus
+    if (isautomode==0)
+        glColor3f(0,1,0);
+    else
+        glColor3f(1,0,0);
     glLineWidth(30);
 
     glBegin(GL_LINES);
@@ -177,15 +210,18 @@ void drawGraph()
 
     glVertex2f(-0.98,0.70);
     glVertex2f(-0.90,0.70);
-    glVertex2f(-0.94,0.65);
-    glVertex2f(-0.94,0.75);
+    glVertex2f(-0.94,0.66);
+    glVertex2f(-0.94,0.74);
 
     glEnd();
     //plus&minus end
 
+    //auto mode
+autoMode();
+    //auto mode end
 
     //arrow
-    glColor3f(0,1,0);
+        glColor3f(0,1,0);
     glLineWidth(10);
 
     glBegin(GL_LINES);
