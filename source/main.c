@@ -14,6 +14,8 @@ int isautomode=0; //auto mode
 
 #include "read.c"
 
+#define RESOLUTION 320
+
 // library installation : sudo apt-get install freeglut3
 //                        sudo apt-get install freeglut3-dev
 // Library verification : ls /usr/include/GL/ -l
@@ -137,22 +139,22 @@ void mouse(int button, int state, int mousex, int mousey)
         printf("%f %f\n",mx,my);
         glutPostRedisplay();
     }
-    if (mx>0 && mx <75 && my > 125 && my <175 && channel <16)
+    if (mx>0 && mx <((75/1080)*RESOLUTION) && my > ((125/1080)*RESOLUTION) && my <((175/1080)*RESOLUTION) && channel <16)
     {
         channel++;
         printf("increase channel\n");
     }
-    if (mx>0 && mx <75 && my > 50 && my <100 && channel >1)
+    if (mx>0 && mx <((75/1080)*RESOLUTION) && my > ((50/1080)*RESOLUTION) && my <((100/1080)*RESOLUTION) && channel >1)
     {
         channel--;
         printf("decrease channel\n");
     }
-    if (mx>0 && mx <75 && my > 200 && my <275 && isautomode==0)
+    if (mx>0 && mx <((75/1080)*RESOLUTION) && my > ((200/1080)*RESOLUTION) && my <((275/1080)*RESOLUTION) && isautomode==0)
     {
         isautomode=1;
         printf("auto on\n");
     }
-    else if (mx>0 && mx <75 && my > 200 && my <275 && isautomode==1)
+    else if (mx>0 && mx <((75/1080)*RESOLUTION) && my > ((200/1080)*RESOLUTION) && my <((275/1080)*RESOLUTION) && isautomode==1)
     {
         isautomode=0;
         printf("auto off\n");
@@ -201,7 +203,7 @@ void drawGraph()
         glColor3f(0,1,0);
     else
         glColor3f(1,0,0);
-    glLineWidth(30);
+    glLineWidth(10);
 
     glBegin(GL_LINES);
     glVertex2f(-0.98,0.85);
@@ -329,13 +331,14 @@ int main (int argc, char *argv[])
 {
     glutInit(&argc,argv);
 
-    glutInitWindowPosition(200,100);
+    glutInitWindowPosition(0,0);
     //glutInitWindowSize(800,600);
-    glutInitWindowSize(1080,1080);
+    glutInitWindowSize(RESOLUTION,RESOLUTION);
 
     glutInitDisplayMode(GLUT_RGB | GLUT_SINGLE);
     glutCreateWindow("Radar");
     initGraph();
+    glutFullScreen();
     glutDisplayFunc(drawGraph);
     //initPoint();
     //glutDisplayFunc(drawPoint);
