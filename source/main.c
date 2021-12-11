@@ -159,6 +159,10 @@ void mouse(int button, int state, int mousex, int mousey)
         isautomode=0;
         printf("auto off\n");
     }
+    else if (mx>0.85*RESOLUTION && my > ((0.85)*RESOLUTION))
+    {
+        exit(0);
+    }
     mx = 0;
     my = 0;
     printf("%f %f\n",mx,my);
@@ -239,6 +243,21 @@ autoMode();
     glEnd();
     glColor3f(0,0,1);
     //arrow end
+
+//quit cross
+        glColor3f(1,0,0);
+    glLineWidth(5);
+
+    glBegin(GL_LINES);
+    glVertex2f(0.90,-0.80);
+    glVertex2f(0.80,-0.90);
+    glVertex2f(0.80,-0.800);
+    glVertex2f(0.90,-0.90);
+
+    glEnd();
+    glColor3f(0,0,1);
+    //quit cross end
+
 
 
     //circle
