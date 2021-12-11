@@ -282,15 +282,15 @@ autoMode();
 
     //channel
     glColor3f(0,1,0);
-    char *chan=malloc(sizeof(char)*20);
+    char *chan=malloc(sizeof(char)*50);
     char *channum=malloc(sizeof(char)*5);
     strcpy(chan,"PMR446 - CHANNEL : ");
     sprintf(channum,"%d",channel);
     strcat(chan,channum);
-    int c = glutBitmapLength(GLUT_BITMAP_TIMES_ROMAN_24, chan);
+    //int c = glutBitmapLength(GLUT_BITMAP_TIMES_ROMAN_24, chan);
     glRasterPos2f(-0.98, 0.95);
     int len = strlen(chan);
-    for (size_t i = 0; i < len; i++)
+    for (int i = 0; i < len; i++)
     {
         glutBitmapCharacter(GLUT_BITMAP_TIMES_ROMAN_24,chan[i]);
     }
@@ -300,10 +300,10 @@ autoMode();
 
     //time
     glColor3f(0,1,0);
-    int w = glutBitmapLength(GLUT_BITMAP_TIMES_ROMAN_24, ctime(&t));
+    //int w = glutBitmapLength(GLUT_BITMAP_TIMES_ROMAN_24, ctime(&t));
     glRasterPos2f(-1, -1);
     len = strlen(ctime(&t));
-    for (size_t i = 0; i < len; i++)
+    for (int i = 0; i < len; i++)
     {
         glutBitmapCharacter(GLUT_BITMAP_TIMES_ROMAN_24, ctime(&t)[i]);
     }
