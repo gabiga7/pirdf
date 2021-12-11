@@ -203,7 +203,7 @@ void drawGraph()
         glColor3f(0,1,0);
     else
         glColor3f(1,0,0);
-    glLineWidth(10);
+    glLineWidth(3);
 
     glBegin(GL_LINES);
     glVertex2f(-0.98,0.85);
@@ -224,7 +224,7 @@ autoMode();
 
     //arrow
         glColor3f(0,1,0);
-    glLineWidth(10);
+    glLineWidth(5);
 
     glBegin(GL_LINES);
     glVertex2f(0.90,0.80);
