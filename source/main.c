@@ -8,13 +8,14 @@
 #include <time.h>
 #include <pthread.h>
 
-struct to_give received; //data received from read
+//struct to_give received; //data received from read
 int channel=7; //channel scanned
 int isautomode=0; //auto mode
 
+
 #include "read.c"
 
-#define RESOLUTION 320
+#define RESOLUTION 1080
 
 // library installation : sudo apt-get install freeglut3
 //                        sudo apt-get install freeglut3-dev
@@ -62,9 +63,11 @@ void drawCircle(float cx, float cy, float r, int num_segments) {
 
 void updateRead()
 {
-    pthread_t th;
-    pthread_create(&th,NULL,&read,NULL);
-    pthread_detach (th);
+    //pthread_t th; //working thread
+    //pthread_create(&th,NULL,&read,NULL);
+    //pthread_detach(th);
+    struct to_give received=read(NULL);
+    //    received=read(NULL); //data received from read
     x=received.resultatO-received.resultatE;
     y=received.resultatS-received.resultatN;
     //x=0.5;
@@ -223,11 +226,11 @@ void drawGraph()
     //plus&minus end
 
     //auto mode
-autoMode();
+    autoMode();
     //auto mode end
 
     //arrow
-        glColor3f(0,1,0);
+    glColor3f(0,1,0);
     glLineWidth(5);
 
     glBegin(GL_LINES);
@@ -244,8 +247,8 @@ autoMode();
     glColor3f(0,0,1);
     //arrow end
 
-//quit cross
-        glColor3f(1,0,0);
+    //quit cross
+    glColor3f(1,0,0);
     glLineWidth(5);
 
     glBegin(GL_LINES);

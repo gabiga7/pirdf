@@ -192,7 +192,8 @@ static void *read_db(void* arguments)
 }
 
 
-void *read(void* arguments)
+//void *read(void* arguments)
+struct to_give read(void* arguments)
 {
     //int ret;
     pthread_t thread_read0;
@@ -207,17 +208,17 @@ void *read(void* arguments)
 
     struct arg_struct argsS;
     argsS.channel=7;
-    argsS.id=1;
+    argsS.id=2;
     argsS.resultat=0;
 
     struct arg_struct argsO;
     argsO.channel=7;
-    argsO.id=2;
+    argsO.id=3;
     argsO.resultat=0;
 
     struct arg_struct argsE;
     argsE.channel=7;
-    argsE.id=3;
+    argsE.id=4;
     argsE.resultat=0;
 
     //void *out_void=(void*)malloc(sizeof(double)*2);
@@ -238,11 +239,14 @@ void *read(void* arguments)
     printf("\n\n\n%lf\n\n\n\n",argsO.resultat);
     printf("\n\n\n%lf\n\n\n\n",argsE.resultat);
 
+    struct to_give received;
 
     received.resultatN=argsN.resultat;
     received.resultatS=argsS.resultat;
     received.resultatO=argsO.resultat;
     received.resultatE=argsE.resultat;
+
+    return received;
 
 }
 
