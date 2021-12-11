@@ -14,7 +14,7 @@ int isautomode=0; //auto mode
 
 #include "read.c"
 
-#define RESOLUTION 1080
+#define RESOLUTION 320
 
 // library installation : sudo apt-get install freeglut3
 //                        sudo apt-get install freeglut3-dev
@@ -357,7 +357,7 @@ int main (int argc, char *argv[])
     glutInitDisplayMode(GLUT_RGB | GLUT_SINGLE);
     glutCreateWindow("Radar");
     initGraph();
-    //glutFullScreen();
+    glutFullScreen();
     glutDisplayFunc(drawGraph);
     //initPoint();
     //glutDisplayFunc(drawPoint);
