@@ -14,7 +14,7 @@ int isautomode=0; //auto mode
 
 #include "read.c"
 
-#define RESOLUTION 320
+#define RESOLUTION 1080
 
 // library installation : sudo apt-get install freeglut3
 //                        sudo apt-get install freeglut3-dev
@@ -139,22 +139,22 @@ void mouse(int button, int state, int mousex, int mousey)
         printf("%f %f\n",mx,my);
         glutPostRedisplay();
     }
-    if (mx>0 && mx <((75/1080)*RESOLUTION) && my > ((125/1080)*RESOLUTION) && my <((175/1080)*RESOLUTION) && channel <16)
+    if (mx>0 && mx <((75.f/1080)*RESOLUTION) && my > ((125.f/1080)*RESOLUTION) && my <((175.f/1080)*RESOLUTION) && channel <16)
     {
         channel++;
         printf("increase channel\n");
     }
-    if (mx>0 && mx <((75/1080)*RESOLUTION) && my > ((50/1080)*RESOLUTION) && my <((100/1080)*RESOLUTION) && channel >1)
+    else if (mx>0 && mx <((75.f/1080)*RESOLUTION) && my > ((50.f/1080)*RESOLUTION) && my <((100.f/1080)*RESOLUTION) && channel >1)
     {
         channel--;
         printf("decrease channel\n");
     }
-    if (mx>0 && mx <((75/1080)*RESOLUTION) && my > ((200/1080)*RESOLUTION) && my <((275/1080)*RESOLUTION) && isautomode==0)
+    else if (mx>0 && mx <((75.f/1080)*RESOLUTION) && my > ((200.f/1080)*RESOLUTION) && my <((275.f/1080)*RESOLUTION) && isautomode==0)
     {
         isautomode=1;
         printf("auto on\n");
     }
-    else if (mx>0 && mx <((75/1080)*RESOLUTION) && my > ((200/1080)*RESOLUTION) && my <((275/1080)*RESOLUTION) && isautomode==1)
+    else if (mx>0 && mx <((75.f/1080)*RESOLUTION) && my > ((200.f/1080)*RESOLUTION) && my <((275.f/1080)*RESOLUTION) && isautomode==1)
     {
         isautomode=0;
         printf("auto off\n");
@@ -288,7 +288,7 @@ autoMode();
     sprintf(channum,"%d",channel);
     strcat(chan,channum);
     //int c = glutBitmapLength(GLUT_BITMAP_TIMES_ROMAN_24, chan);
-    glRasterPos2f(-0.98, 0.95);
+    glRasterPos2f(-0.98, 0.90);
     int len = strlen(chan);
     for (int i = 0; i < len; i++)
     {
@@ -338,7 +338,7 @@ int main (int argc, char *argv[])
     glutInitDisplayMode(GLUT_RGB | GLUT_SINGLE);
     glutCreateWindow("Radar");
     initGraph();
-    glutFullScreen();
+    //glutFullScreen();
     glutDisplayFunc(drawGraph);
     //initPoint();
     //glutDisplayFunc(drawPoint);
