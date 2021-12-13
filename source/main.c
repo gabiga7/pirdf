@@ -8,14 +8,24 @@
 #include <time.h>
 #include <pthread.h>
 
+struct to_give
+{
+    double resultatN;
+    double resultatS;
+    double resultatO;
+    double resultatE;
+};
+
 //struct to_give received; //data received from read
 int channel=7; //channel scanned
 int isautomode=0; //auto mode
+struct to_give received;
+pthread_mutex_t mut;
 
 
 #include "read.c"
 
-#define RESOLUTION 1080
+#define RESOLUTION 320
 
 // library installation : sudo apt-get install freeglut3
 //                        sudo apt-get install freeglut3-dev
@@ -23,8 +33,8 @@ int isautomode=0; //auto mode
 // compilation :  gcc main.c -o out -I /usr/include -lglut -lGL -lphthread
 // execution : ./out
 
-float x=0; //position of detection
-float y=0; //position of detection
+float x=0.1; //position of detection
+float y=0.1; //position of detection
 
 float r=0; //rayon of the wave
 
@@ -63,11 +73,13 @@ void drawCircle(float cx, float cy, float r, int num_segments) {
 
 void updateRead()
 {
-    //pthread_t th; //working thread
-    //pthread_create(&th,NULL,&read,NULL);
-    //pthread_detach(th);
-    struct to_give received=read(NULL);
-    //    received=read(NULL); //data received from read
+	printf("COUCOUCOUCOUCOUCOUCOUCOCUOCUCOCUOCUOCUOCCOUUOCUOCCUOCOUCOUCUOCUOCUOCUOCUOCUOCUOCCUO\n");
+	fflush(stdout);
+    pthread_t th; //working thread
+    pthread_create(&th,NULL,&read,NULL);
+    pthread_detach(th);
+    //struct to_give received;
+    //received=read();
     x=received.resultatO-received.resultatE;
     y=received.resultatS-received.resultatN;
     //x=0.5;
@@ -81,7 +93,7 @@ void updateRead()
         y=-0.75;
     if (y>=0.75)
         y=0.75;
-    glutPostRedisplay();
+    //glutPostRedisplay();
     glutTimerFunc(3000,updateRead,0);
 }
 
@@ -164,7 +176,7 @@ void mouse(int button, int state, int mousex, int mousey)
     }
     else if (mx>0.85*RESOLUTION && my > ((0.85)*RESOLUTION))
     {
-        exit(0);
+	    exit(1);
     }
     mx = 0;
     my = 0;
@@ -351,7 +363,12 @@ void drawPoint()
 
 int main (int argc, char *argv[])
 {
+//	pthread_mutex_init(&mut,NULL);
+    printf("=====BALISE 0=====\n");
+    fflush(stdout);
     glutInit(&argc,argv);
+    printf("=====BALISE A=====\n");
+    fflush(stdout);
 
     glutInitWindowPosition(0,0);
     //glutInitWindowSize(800,600);
@@ -359,15 +376,29 @@ int main (int argc, char *argv[])
 
     glutInitDisplayMode(GLUT_RGB | GLUT_SINGLE);
     glutCreateWindow("Radar");
+    printf("=====BALISE B=====\n");
+    fflush(stdout);
     initGraph();
-    glutFullScreen();
+    printf("=====BALISE 1=====\n");
+    fflush(stdout);
+    //glutFullScreen();
     glutDisplayFunc(drawGraph);
+    printf("=====BALISE 2=====\n");
+    fflush(stdout);
     //initPoint();
     //glutDisplayFunc(drawPoint);
-    updateWave();
-    updateRead();
+    //updateWave();
+    //updateRead();
     updateTime();
+    printf("=====BALISE 3=====\n");
+    fflush(stdout);
     glutMouseFunc(mouse);
+    printf("=====BALISE 4=====\n");
+    fflush(stdout);
+    //glFlush();
     glutMainLoop();
+    printf("=====BALISE 5=====\n");
+    fflush(stdout);
+//	pthread_mutex_destroy(&mut);
     return 0;
 }

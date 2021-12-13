@@ -12,13 +12,14 @@ struct arg_struct
     double resultat;
 };
 
-struct to_give
+/*struct to_give
 {
     double resultatN;
     double resultatS;
     double resultatO;
     double resultatE;
 };
+*/
 
 long countlines(char *filename)
 {
@@ -192,10 +193,12 @@ static void *read_db(void* arguments)
 }
 
 
-//void *read(void* arguments)
-struct to_give read(void* arguments)
+//struct to_give read()
+void *read(void* arguments)
 {
-    //int ret;
+
+pthread_mutex_lock(&mut);
+
     pthread_t thread_read0;
     pthread_t thread_read1;
     pthread_t thread_read2;
@@ -239,15 +242,17 @@ struct to_give read(void* arguments)
     printf("\n\n\n%lf\n\n\n\n",argsO.resultat);
     printf("\n\n\n%lf\n\n\n\n",argsE.resultat);
 
-    struct to_give received;
+    //struct to_give final_result;
 
     received.resultatN=argsN.resultat;
     received.resultatS=argsS.resultat;
     received.resultatO=argsO.resultat;
     received.resultatE=argsE.resultat;
 
-    return received;
+    //mut=0;
+    //return final_result;
 
+pthread_mutex_unlock(&mut);
 }
 
 /*
