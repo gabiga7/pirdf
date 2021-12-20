@@ -80,10 +80,10 @@ void updateRead()
     pthread_detach(th);
     //struct to_give received;
     //received=read();
-    x=-received.resultatO-received.resultatE; //if antennas 
-    y=-received.resultatS+received.resultatN;
-    //x=received.resultatS;// south and west mode
-    //y=received.resultatN;
+    //x=-received.resultatO-received.resultatE; //if 2 antennas 
+    //y=-received.resultatS+received.resultatN;
+    x=received.resultatS;// south and west mode
+    y=received.resultatN;
     //x=0.5;
     //y=0.5;
     //channel=7;
