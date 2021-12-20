@@ -5,6 +5,7 @@
 #include <GL/gl.h>
 #include <GL/glu.h>
 #include <GL/glut.h>
+#include <unistd.h>
 #include <time.h>
 #include <pthread.h>
 
@@ -16,7 +17,7 @@ struct to_give
     double resultatE;
 };
 
-//struct to_give received; //data received from read
+//struct to_give received; //data received from aread
 int channel=7; //channel scanned
 int isautomode=0; //auto mode
 struct to_give received;
@@ -33,8 +34,8 @@ pthread_mutex_t mut;
 // compilation :  gcc main.c -o out -I /usr/include -lglut -lGL -lphthread
 // execution : ./out
 
-float x=0.1; //position of detection
-float y=0.1; //position of detection
+float x=0; //position of detection
+float y=0; //position of detection
 
 float r=0; //rayon of the wave
 
@@ -73,15 +74,16 @@ void drawCircle(float cx, float cy, float r, int num_segments) {
 
 void updateRead()
 {
-	printf("COUCOUCOUCOUCOUCOUCOUCOCUOCUCOCUOCUOCUOCCOUUOCUOCCUOCOUCOUCUOCUOCUOCUOCUOCUOCUOCCUO\n");
 	fflush(stdout);
     pthread_t th; //working thread
-    pthread_create(&th,NULL,&read,NULL);
+    pthread_create(&th,NULL,&aread,NULL);
     pthread_detach(th);
     //struct to_give received;
     //received=read();
-    x=received.resultatO-received.resultatE;
-    y=received.resultatS-received.resultatN;
+    x=-received.resultatO-received.resultatE; //if antennas 
+    y=-received.resultatS+received.resultatN;
+    //x=received.resultatS;// south and west mode
+    //y=received.resultatN;
     //x=0.5;
     //y=0.5;
     //channel=7;
@@ -363,9 +365,10 @@ void drawPoint()
 
 int main (int argc, char *argv[])
 {
-//	pthread_mutex_init(&mut,NULL);
+	pthread_mutex_init(&mut,NULL);
     printf("=====BALISE 0=====\n");
     fflush(stdout);
+    //sleep(10);
     glutInit(&argc,argv);
     printf("=====BALISE A=====\n");
     fflush(stdout);
@@ -381,14 +384,14 @@ int main (int argc, char *argv[])
     initGraph();
     printf("=====BALISE 1=====\n");
     fflush(stdout);
-    //glutFullScreen();
+    glutFullScreen();
     glutDisplayFunc(drawGraph);
     printf("=====BALISE 2=====\n");
     fflush(stdout);
     //initPoint();
     //glutDisplayFunc(drawPoint);
-    //updateWave();
-    //updateRead();
+    updateWave();
+    updateRead();
     updateTime();
     printf("=====BALISE 3=====\n");
     fflush(stdout);
@@ -399,6 +402,6 @@ int main (int argc, char *argv[])
     glutMainLoop();
     printf("=====BALISE 5=====\n");
     fflush(stdout);
-//	pthread_mutex_destroy(&mut);
+	pthread_mutex_destroy(&mut);
     return 0;
 }

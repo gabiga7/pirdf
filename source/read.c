@@ -102,7 +102,7 @@ static void *read_db(void* arguments)
     strcat(command,b2);
     free(b2);
 
-    strcat(command,":1 -g 0 -c 0.99 -i 1 -1 > ");
+    strcat(command,":1 -g 1 -c 0.99 -i 1 -1 > ");
     strcat(command,filename);
 
     printf("%s\n",command);
@@ -184,7 +184,7 @@ static void *read_db(void* arguments)
     free(filename);
     printf("\n\n\nmax=%lf\n\n\n",max);
 
-    if (max<-49)
+    if (max<-40)
         args->resultat=0;
     else
         args->resultat=max;
@@ -194,7 +194,7 @@ static void *read_db(void* arguments)
 
 
 //struct to_give read()
-void *read(void* arguments)
+void *aread(void* arguments)
 {
 
 pthread_mutex_lock(&mut);
@@ -211,17 +211,17 @@ pthread_mutex_lock(&mut);
 
     struct arg_struct argsS;
     argsS.channel=7;
-    argsS.id=2;
+    argsS.id=1;
     argsS.resultat=0;
 
     struct arg_struct argsO;
     argsO.channel=7;
-    argsO.id=3;
+    argsO.id=2;
     argsO.resultat=0;
 
     struct arg_struct argsE;
     argsE.channel=7;
-    argsE.id=4;
+    argsE.id=3;
     argsE.resultat=0;
 
     //void *out_void=(void*)malloc(sizeof(double)*2);
