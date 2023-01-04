@@ -1,5 +1,3 @@
-#Created by gabiga7
-
 **HOW TO USE :**
 First time installation:
     launcher
@@ -43,3 +41,5 @@ Radar window may takes up to 10 seconds to appear depending your device
 Known issues :
 -Memory leak
 -Segfault sometimes
+
+Created by gabiga7
