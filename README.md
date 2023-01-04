@@ -1,19 +1,19 @@
 #Created by gabiga7
 
-HOW TO USE :
+**HOW TO USE :**
 First time installation:
     launcher
         ->install
 
-Update:
+**Update:**
     launcher
         ->update
 
-Start :
+**Start :**
     launcher
         ->start
 
-Report a bug :
+**Report a bug :**
     launcher
         ->createlogs
     send .tar file to gabelga91@gmail.com with comments
@@ -23,17 +23,17 @@ Report a bug :
 
 
 
-Manual installation :
+**Manual installation :**
 ./source/install.sh
 
-Automatic configuration and compilation command :
+**Automatic configuration and compilation command :**
 ./source/configure.sh
 
-Manual compilation command :
+**Manual compilation command :**
 gcc source/main.c -g -I /usr/include -lglut -lm -lGL -lpthread -o rdf
 
 
-Manual execution command :
+**Manual execution command :**
 ./rdf
 
 
