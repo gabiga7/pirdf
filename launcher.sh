@@ -1,5 +1,4 @@
 #!/usr/bin/sh
-cd ~/Desktop/pirdf/pirdf/
 var=$(zenity --width=50 --height=320 --list "start-RDF" "start-camera"  "install" "update" "auto-config" "createlogs" "clean" --column="command" --text="Select action" --title="RDF")
 
 
